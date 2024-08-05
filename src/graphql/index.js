@@ -15,8 +15,18 @@ const typeDefs = `
     getBoolean: Boolean
     getID: ID
     getNumbers(numbers: [Int!]!): [Int]
+  getProduct: Product
   }
-`
+
+  type Product {
+    id: ID!
+    name: String!
+    price: Float!
+    description: String!
+    image: String!
+    createdAt: String!
+  }
+`;
 
 const resolvers = {
   Query: {
@@ -27,7 +37,17 @@ const resolvers = {
     getString: () => 'palabra',
     getBoolean: () => true,
     getID: () => '121212',
-    getNumbers: (_, args) => args.numbers
+    getNumbers: (_, args) => args.numbers,
+    getProduct: () => {
+      return {
+        id: '1212',
+        name: 'product 1',
+        price: 100.12,
+        description: 'bla bla bla',
+        image: 'http://image.asas',
+        createdAt: new Date().toISOString()
+      }
+    }
 
   }
 }
