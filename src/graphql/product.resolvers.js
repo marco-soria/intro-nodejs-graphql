@@ -1,7 +1,6 @@
 const ProductsService = require('./../services/product.service');
 const service = new ProductsService();
 
-
 const getProduct = (_, { id }) => {
   return service.findOne(id);
 }
@@ -23,4 +22,9 @@ const deleteProduct = async (_, {id }) => {
   return id;
 }
 
-module.exports = { getProduct, getProducts, addProduct, updateProduct, deleteProduct };
+const getProductsByCategory = (parent) => {
+  const id = parent.dataValues.id;
+  return service.getByCategory(id);
+}
+
+module.exports = { getProduct, getProducts, addProduct, updateProduct, deleteProduct, getProductsByCategory };
